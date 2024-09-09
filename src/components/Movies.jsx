@@ -1,10 +1,15 @@
 import Movie from './Movie';
 import '../styles/movies.scss';
 
-const Movies = ({ movies, viewTrailer, closeCard }) => {
+import { useSelector } from 'react-redux';
+import useInfiniteScroll from '../hooks/useInfiniteScroll';
+
+const Movies = ({ viewTrailer, closeCard }) => {
+  const { movies, fetchStatus } = useSelector((state) => state.movies);
+  useInfiniteScroll();
   return (
     <div data-testid='movies' className='movie-grid'>
-      {movies.movies.results?.map((movie) => {
+      {movies?.map((movie) => {
         return (
           <Movie
             movie={movie}
@@ -14,6 +19,7 @@ const Movies = ({ movies, viewTrailer, closeCard }) => {
           />
         );
       })}
+      {fetchStatus === 'loading' && <p>Loading more movies...</p>}
     </div>
   );
 };
