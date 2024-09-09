@@ -18,7 +18,11 @@ const moviesSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchMovies.fulfilled, (state, action) => {
-        state.movies = [...state.movies, ...action.payload.results];
+        if (action.payload.page === 1) {
+          state.movies = action.payload.results;
+        } else {
+          state.movies = [...state.movies, ...action.payload.results];
+        }
         state.fetchStatus = 'success';
         state.currentPage = action.payload.page;
         state.totalPages = action.payload.total_pages;
