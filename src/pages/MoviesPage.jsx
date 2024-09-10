@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import useInfiniteScroll from '../hooks/useInfiniteScroll';
 
 const MoviesPage = ({ viewTrailer }) => {
-  const { movies, fetchStatus } = useSelector((state) => state.movies);
+  const { movies, fetchStatus, error } = useSelector((state) => state.movies);
   useInfiniteScroll();
   return (
     <div data-testid='movies' className='movie-grid'>
@@ -13,6 +13,7 @@ const MoviesPage = ({ viewTrailer }) => {
         return <Movie movie={movie} key={movie.id} viewTrailer={viewTrailer} />;
       })}
       {fetchStatus === 'loading' && <p>Loading more movies...</p>}
+      {fetchStatus === 'error' && <p>{error}</p>}
     </div>
   );
 };

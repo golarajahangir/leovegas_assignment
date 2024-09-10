@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchMovies } from '../data/moviesSlice';
+import { fetchMovies } from '../data/api/moviesApi';
 import {
   ENDPOINT_SEARCH,
   ENDPOINT_DISCOVER,

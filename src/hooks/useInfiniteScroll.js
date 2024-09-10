@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchMovies } from '../data/moviesSlice';
+import { fetchMovies } from '../data/api/moviesApi';
 import { ENDPOINT_DISCOVER } from '../constants';
 
 const useInfiniteScroll = () => {
@@ -17,11 +17,7 @@ const useInfiniteScroll = () => {
         fetchStatus !== 'loading' &&
         hasMore
       ) {
-        dispatch(
-          fetchMovies(
-            `${ENDPOINT_DISCOVER}&page=` + +(parseInt(currentPage, 10) + 1)
-          )
-        );
+        dispatch(fetchMovies(`${ENDPOINT_DISCOVER}&page=` + (currentPage + 1)));
       }
     };
 
