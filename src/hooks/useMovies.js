@@ -17,9 +17,9 @@ const useMovies = (searchParams, setSearchParams) => {
   const searchQuery = searchParams.get('search');
 
   const [videoKey, setVideoKey] = useState();
-  const [isOpen, setOpen] = useState(false);
+  const [isModalOpen, setModalOpen] = useState(false);
 
-  const closeModal = () => setOpen(false);
+  const closeModal = () => setModalOpen(false);
 
   const getSearchResults = (query) => {
     if (query !== '') {
@@ -46,8 +46,8 @@ const useMovies = (searchParams, setSearchParams) => {
 
   const viewTrailer = (movie) => {
     getMovie(movie.id);
-    if (!videoKey) setOpen(true);
-    setOpen(true);
+    if (!videoKey) setModalOpen(true);
+    setModalOpen(true);
   };
 
   const getMovie = async (id) => {
@@ -73,7 +73,7 @@ const useMovies = (searchParams, setSearchParams) => {
     searchMovies,
     viewTrailer,
     videoKey,
-    isOpen,
+    isModalOpen,
     closeModal,
   };
 };

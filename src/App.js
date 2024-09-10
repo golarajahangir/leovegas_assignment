@@ -10,10 +10,8 @@ import useMovies from './hooks/useMovies';
 
 const App = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const { searchMovies, viewTrailer, videoKey, isOpen, closeModal } = useMovies(
-    searchParams,
-    setSearchParams
-  );
+  const { searchMovies, viewTrailer, videoKey, isModalOpen, closeModal } =
+    useMovies(searchParams, setSearchParams);
 
   return (
     <div className='App'>
@@ -24,7 +22,7 @@ const App = () => {
       />
 
       <div className='container'>
-        {isOpen && (
+        {isModalOpen && (
           <Modal closeModal={closeModal}>
             {videoKey ? (
               <YouTubePlayer videoKey={videoKey} />
